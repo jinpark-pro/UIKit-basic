@@ -12,16 +12,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let imageView = UIImageView(image: UIImage(systemName: "hare.fill"))
-        imageView.frame = CGRect(x: 50, y: 50, width: 100, height: 50)
+        imageView.frame = CGRect(x: 50, y: 50, width: 100, height: 100)
         imageView.tintColor = .purple
         imageView.contentMode = .scaleAspectFit
-        view.addSubview(imageView)
+        imageView.layer.cornerRadius = imageView.frame.width / 2
+        imageView.clipsToBounds = true
         
-        let flagImageView = UIImageView(image: UIImage(systemName: "flag"))
-        flagImageView.frame = CGRect(x: 50, y: 200, width: 100, height: 50)
-        flagImageView.clipsToBounds = true
-        flagImageView.contentMode = .scaleAspectFill
-        view.addSubview(flagImageView)
+        imageView.layer.shadowColor = UIColor.red.cgColor
+        imageView.layer.shadowOpacity = 0.8
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        imageView.layer.shadowRadius = 16
+        
+        imageView.alpha = 0.75
+        
+        view.addSubview(imageView)
     }
 }
 
