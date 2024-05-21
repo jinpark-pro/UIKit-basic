@@ -8,24 +8,25 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var count = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let imageView = UIImageView(image: UIImage(systemName: "hare.fill"))
-        imageView.frame = CGRect(x: 50, y: 50, width: 100, height: 100)
-        imageView.tintColor = .purple
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = imageView.frame.width / 2
-        imageView.clipsToBounds = true
+        let button = UIButton(type: .system)
+        button.setTitle("Click me", for: .normal)
+        button.addAction(UIAction { [weak self] _ in
+            self?.count += 1
+            print("Button was tapped: \(self?.count ?? 0)")
+        }, for: .touchUpInside)
         
-        imageView.layer.shadowColor = UIColor.red.cgColor
-        imageView.layer.shadowOpacity = 0.8
-        imageView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        imageView.layer.shadowRadius = 16
+        button.translatesAutoresizingMaskIntoConstraints = false
         
-        imageView.alpha = 0.75
+        view.addSubview(button)
         
-        view.addSubview(imageView)
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
     }
 }
 
